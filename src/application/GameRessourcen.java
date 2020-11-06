@@ -12,8 +12,19 @@ public class GameRessourcen {
 	private String name;
 	private int amount;
 	
-	public void produce() {
+	public void energy() {
 		add(10*SolarPanel.getWorking());
+	}
+	
+	public void metal(GameRessourcen en) {
+		for(int i = 0; i<MetalDrill.getWorking(); i++) {
+			if(en.remove(15)) {
+				add(10);
+			}
+			else {
+				break;
+			}
+		}
 	}
 	
 	public void add(int amount) {

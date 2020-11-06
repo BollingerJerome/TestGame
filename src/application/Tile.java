@@ -14,6 +14,7 @@ public class Tile {
 		this.y = positionY;
 		this.gc = gc;
 		this.gameField = gf;
+		this.colorInt = color;
 		
 		switch(color) {
 		case(0):
@@ -28,15 +29,24 @@ public class Tile {
 		case(3):
 			this.color = Color.PERU;
 		break;
-		case(4):
-			this.color = Color.DODGERBLUE;
-		break;
+		
 		case(9):
 			this.color = Color.BLACK;
 		break;
 		case(20):
 			this.color = Color.BLUE;
 		break;
+		case(21):
+			this.color = Color.DODGERBLUE;
+		break;
+		case(22):
+			this.color = Color.LIGHTSALMON;
+		break;
+		
+		case(23):
+			this.color = Color.DARKGOLDENROD;
+		break;
+		
 		}
 	}
 
@@ -44,7 +54,7 @@ public class Tile {
 	private Color color;
 	private GraphicsContext gc;
 	private Gamefield gameField;
-	
+	private int colorInt;
 	
 	public void draw() {
 		gc.setFill(color);
@@ -133,6 +143,18 @@ public class Tile {
 
 	public void setGameField(Gamefield gameField) {
 		this.gameField = gameField;
+	}
+
+
+
+	public int getColorInt() {
+		return colorInt;
+	}
+
+
+
+	public void setColorInt(int colorInt) {
+		this.colorInt = colorInt;
 	}
 	
 }

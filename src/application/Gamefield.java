@@ -70,17 +70,26 @@ public class Gamefield {
 		}
 	}
 	
+	//returns the color of the current tile
+	public int onTileColor(int x, int y) {
+		return field[x][y];
+	}
 
 	
 	//Fieldgeneration
 	public int[][] generateField(int w, int h){
 		int[][] genField = new int[w][h];
 		float water = (float) 3/(h*w);
+		float metal = (float) 3/(h*w);
 		for (int i = 0; i<w; i++) {
 			for (int j = 0; j<h; j++) {
 				double chance = Math.random();
+				double metalchance = Math.random();
 				if(chance <= water) {
-					genField[i][j] = 4;
+					genField[i][j] = 21;
+				}
+				else if (metalchance <= metal){
+					genField[i][j] = 22;
 				}
 				else {
 					genField[i][j] = 3;
