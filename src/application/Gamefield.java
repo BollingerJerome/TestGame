@@ -7,7 +7,7 @@ public class Gamefield {
 	
 	//Dev branch
 	//Constructor
-	public Gamefield(int[][] field, int vertical, int horizontal, int width, int heigth, GraphicsContext gc) {
+	public Gamefield(int[][] field, int horizontal, int vertical,  int width, int heigth, GraphicsContext gc) {
 
 		
 		this.field = field;
@@ -22,16 +22,16 @@ public class Gamefield {
 	
 	//Constructor with FieldGeneration
 	//horizontal isch ahzahl tiles und width isch Pixel
-	public Gamefield(int vertical, int horizontal, int width, int heigth, GraphicsContext gc) {
+	public Gamefield(int horizontal, int vertical,  int width, int heigth, GraphicsContext gc) {
 
 		super();
-		this.field = generateField(vertical, horizontal);
+		this.field = generateField(horizontal, vertical);
 		this.verticalTiles = vertical;
 		this.horizontalTiles = horizontal;
 		this.windowWidth = width;
 		this.windowHeigth = heigth;
 		this.gc = gc;
-		this.tiles = new Tile[vertical][horizontal];
+		this.tiles = new Tile[horizontal][vertical];
 		addTilesObject();
 
 	}
@@ -42,18 +42,20 @@ public class Gamefield {
 	private GraphicsContext gc;
 	private Tile[][] tiles;
 	
-	public double verticalScalar() {
+	public double horizontalScalar() {
 		return windowWidth/horizontalTiles; 
 	}
-	public double horizontalScalar() {
+	public double verticalScalar() {
 		return windowHeigth/verticalTiles;
 	}
 	
 	//Generate all TileObjects
 	public void addTilesObject() {
-		for (int i= 0; i<this.horizontalTiles; i++) {
-			for (int j = 0; j<this.verticalTiles; j++) {
-				tiles[i][j] = new Tile(i, j, field[i][j], gc, this);
+		for (int i= 0; i < horizontalTiles; i++) {
+			for (int j = 0; j < verticalTiles; j++) {
+				tiles[i][j] = 
+						new Tile(i, j, 
+						field[i][j], gc, this);
 			}
 		}
 	}

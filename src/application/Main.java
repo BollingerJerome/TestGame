@@ -61,10 +61,11 @@ public class Main extends Application {
 
 
 
-		Canvas canvasField = new Canvas(600,600);
+		Canvas canvasField = new Canvas(600,400);
 		GraphicsContext gc = canvasField.getGraphicsContext2D();
 
-		Gamefield gamefield = new Gamefield(20, 20, 400, 400, gc);
+		Gamefield gamefield = new Gamefield(20, 20, (int) canvasField.getWidth(), (int) canvasField.getHeight(), gc);
+		
 		gamefield.drawTiles();
 
 		PlayerCursor pc = new PlayerCursor(gc, gamefield);

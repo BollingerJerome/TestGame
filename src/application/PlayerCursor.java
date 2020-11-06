@@ -32,7 +32,7 @@ public class PlayerCursor extends Tile{
 	}
 	
 	public boolean down() {
-		if(getY() != getGameField().getHorizontalTiles()-1) {
+		if(getY() != getGameField().getVerticalTiles()-1) {
 			setY(getY()+1);
 			return true;
 		}
