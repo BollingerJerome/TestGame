@@ -19,8 +19,16 @@ public class GameRessourcen {
 	public void add(int amount) {
 		this.amount += amount;
 	}
-	public void remove(int amount) {
-		this.amount -= amount;
+	
+	public boolean remove(int amount) {
+		if(this.amount-amount < 0) {
+			System.out.println("Not enough material");
+			return false;
+		}
+		else {
+			this.amount -= amount;
+			return true;
+		}
 	}
 	
 	public String getName() {

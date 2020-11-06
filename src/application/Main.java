@@ -24,6 +24,8 @@ import javafx.scene.input.KeyEvent;
 
 public class Main extends Application {
 	
+
+	
 	GameRessourcen energy = new GameRessourcen("Energy", 50);
 	GameRessourcen metal = new GameRessourcen("Metal", 500);
 	Vector <SolarPanel> solars = new Vector <SolarPanel> () ;
@@ -39,7 +41,7 @@ public class Main extends Application {
 	public void update(boolean moved, Gamefield field, PlayerCursor pc, Label zugLabel, Label coordinate) {
 		if(moved) {
 			Zug++;
-		}
+		
 		energy.produce();
 		energyLabel.setText(energy.getName() + ": " + energy.getAmount());
 		metalLabel.setText(metal.getName() + ": " + metal.getAmount());
@@ -47,7 +49,7 @@ public class Main extends Application {
 		zugLabel.setText("Zug Nr." + Integer.toString(Zug));
 		field.drawTiles();
 		pc.draw();
-		
+		}
 		
 	
 	}
@@ -57,8 +59,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		
-		
+
 
 		Canvas canvasField = new Canvas(600,600);
 		GraphicsContext gc = canvasField.getGraphicsContext2D();
@@ -90,8 +91,14 @@ public class Main extends Application {
 					update(pc.down(), gamefield, pc, zugLabel, coordinate);
 				break;
 				case ("ENTER"):
-					solars.add(new SolarPanel(pc.getX(), pc.getY(), gc, gamefield, metal, energy));
-					update(true, gamefield, pc, zugLabel, coordinate);
+					if( gamefield.getField()[(int) pc.getX()][(int) pc.getY()] != 4) {
+						if(metal.remove(SolarPanel.getCost())) {
+							solars.add(new SolarPanel(pc.getX(), pc.getY(), gc, gamefield, metal, energy));
+							update(true, gamefield, pc, zugLabel, coordinate);
+							System.out.println("solarpanel placed?");
+						}
+					}
+				break;
 					
 				}
 

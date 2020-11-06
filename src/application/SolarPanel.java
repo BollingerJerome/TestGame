@@ -6,6 +6,8 @@ public class SolarPanel extends Tile {
 
 	public SolarPanel(double positionX, double positionY, GraphicsContext gc, Gamefield gf,
 			GameRessourcen construction, GameRessourcen product) {
+		
+		
 		super(positionX, positionY, 20, gc, gf);
 		this.construction = construction;
 		this.product = product;
@@ -13,12 +15,13 @@ public class SolarPanel extends Tile {
 		this.health = 200;
 		this.working++;
 		
-		construction.remove(100);
+		
 		int[][] field = getGameField().getField();
 		field[(int) positionX][(int) positionY] = 20;
 		getGameField().setField(field);
 		getGameField().addTilesObject();
 		System.out.println("Solarpanel created");
+
 	}
 
 	private GameRessourcen construction;
@@ -26,9 +29,8 @@ public class SolarPanel extends Tile {
 	private boolean active;
 	private int health;
 	private static int working;
-	
+	private static int cost = 100;
 
-	
 	
 
 	public GameRessourcen getConstruction() {
@@ -69,6 +71,16 @@ public class SolarPanel extends Tile {
 
 	public static void setWorking(int working) {
 		SolarPanel.working = working;
+	}
+
+
+	public static int getCost() {
+		return cost;
+	}
+
+
+	public static void setCost(int cost) {
+		SolarPanel.cost = cost;
 	}
 	
 	
