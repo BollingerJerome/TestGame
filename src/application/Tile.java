@@ -34,6 +34,9 @@ public class Tile {
 		case(9):
 			this.color = Color.BLACK;
 		break;
+		case(20):
+			this.color = Color.BLUE;
+		break;
 		}
 	}
 

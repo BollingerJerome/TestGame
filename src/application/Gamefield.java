@@ -4,7 +4,7 @@ package application;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Gamefield {
-
+	
 	//Dev branch
 	//Constructor
 	public Gamefield(int[][] field, int vertical, int horizontal, int width, int heigth, GraphicsContext gc) {
@@ -87,7 +87,7 @@ public class Gamefield {
 		}
 		return genField;
 	}
-
+	
 	public int[][] getField() {
 		return field;
 	}

@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Vector;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -21,18 +23,33 @@ import javafx.scene.input.KeyEvent;
 //üben des dev to master merge
 
 public class Main extends Application {
-
+	
+	GameRessourcen energy = new GameRessourcen("Energy", 50);
+	GameRessourcen metal = new GameRessourcen("Metal", 500);
+	Vector <SolarPanel> solars = new Vector <SolarPanel> () ;
+	Label zugLabel = new Label();
+	Label coordinate = new Label();
+	Label energyLabel = new Label(energy.getName() + ": " + energy.getAmount());
+	Label metalLabel = new Label(metal.getName() + ": " + metal.getAmount());
+	Label H2O2 = new Label("H2O2: 0");
+	Label Hoelit = new Label("Hoelit: 0");
+	
 	static int Zug;
 	
 	public void update(boolean moved, Gamefield field, PlayerCursor pc, Label zugLabel, Label coordinate) {
 		if(moved) {
 			Zug++;
 		}
-		
+		energy.produce();
+		energyLabel.setText(energy.getName() + ": " + energy.getAmount());
+		metalLabel.setText(metal.getName() + ": " + metal.getAmount());
 		coordinate.setText("X: " + Double.toString(pc.getX()) + "\tY: " + Double.toString(pc.getY()));
 		zugLabel.setText("Zug Nr." + Integer.toString(Zug));
 		field.drawTiles();
 		pc.draw();
+		
+		
+	
 	}
 	
 
@@ -40,12 +57,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		Label zugLabel = new Label();
-		Label coordinate = new Label();
-		Label energy = new Label("Energy: 200");
-		Label metal = new Label("Metal: 50");
-		Label H2O2 = new Label("H2O2: 0");
-		Label Hoelit = new Label("Hoelit: 0");
+		
 		
 
 		Canvas canvasField = new Canvas(600,600);
@@ -78,7 +90,8 @@ public class Main extends Application {
 					update(pc.down(), gamefield, pc, zugLabel, coordinate);
 				break;
 				case ("ENTER"):
-					update(pc.machine(), gamefield, pc, zugLabel, coordinate);
+					solars.add(new SolarPanel(pc.getX(), pc.getY(), gc, gamefield, metal, energy));
+					update(true, gamefield, pc, zugLabel, coordinate);
 					
 				}
 
@@ -91,8 +104,8 @@ public class Main extends Application {
 	pc.draw();
 	
 	GridPane gridPane = new GridPane();
-	gridPane.add(energy, 0, 0);
-	gridPane.add(metal,0, 1);
+	gridPane.add(energyLabel, 0, 0);
+	gridPane.add(metalLabel,0, 1);
 	gridPane.add(H2O2, 0, 2);
 	gridPane.add(Hoelit, 0, 3);
 	BorderPane root = new BorderPane();
