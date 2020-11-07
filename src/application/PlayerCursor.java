@@ -32,7 +32,7 @@ public class PlayerCursor extends Tile{
 	}
 	
 	public boolean down() {
-		if(getY() != getGameField().getHorizontalTiles()-1) {
+		if(getY() != getGameField().getVerticalTiles()-1) {
 			setY(getY()+1);
 			return true;
 		}
@@ -51,7 +51,7 @@ public class PlayerCursor extends Tile{
 		}
 	}
 	
-	public boolean machine () {
+	/*public boolean machine () {
 		int[][] colorField = getGameField().getField();
 		int posX = (int) getX();
 		int posY = (int) getY();
@@ -66,7 +66,7 @@ public class PlayerCursor extends Tile{
 			System.out.println("Can't place Machine on WaterBlock");
 			return false;
 		}
-	}
+	}*/
 	
 	
 }
